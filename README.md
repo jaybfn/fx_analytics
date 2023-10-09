@@ -18,7 +18,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
 ## Prerequisites
 
 - MT5 terminal installed on a Windows machine.
-- Python environment with necessary packages (refer to `requirements.txt` for a detailed list).
+- Python==3.11 environment with necessary packages (refer to `requirements.txt` for a detailed list).
 - GitHub account for data synchronization.
 
 ## Setup and Usage
