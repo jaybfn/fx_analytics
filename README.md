@@ -27,6 +27,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
    ```bash
    git clone https://github.com/jaybfn/fx_analytics.git
    cd fx_analytics
+   - the main scripts are in the fx_analytics folder! cd fx_analytics/fx_analytics
 
 2. **Install Dependencies**:
    ```bash
