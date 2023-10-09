@@ -33,8 +33,8 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
    pip install -r requirements.txt
 
 3. **In the credential.py file**:
-   ```bash
-   replace *** from login, server and password and insert your credentials: These are the MT5 terminal credentials associated with your MT5 account
+
+   - replace *** from login, server and password and insert your credentials: These are the MT5 terminal credentials associated with your MT5 account
 
 3. **Run the ETL script**:
    ```bash
