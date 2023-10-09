@@ -11,8 +11,10 @@ import pandas as pd
 import numpy as np
 from loguru import logger
 import MetaTrader5 as mt5
-from main_functions import *
-import config as config
+# from . main_functions import *
+# from . import config
+from fx_analytics.main_functions import *
+from fx_analytics.config import *
 
 def data_extract_transform()-> pd.DataFrame:
     """

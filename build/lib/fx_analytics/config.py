@@ -6,4 +6,4 @@ FILE_PATH = 'fx_history.csv'
 
 # Start_date
 from datetime import datetime
-DATETIME = datetime(2023, 9, 1) # year, month, day
+DATETIME = datetime(2023, 9, 27) # year, month, day

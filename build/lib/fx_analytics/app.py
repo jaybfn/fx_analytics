@@ -1,8 +1,5 @@
 import sys
 import os
-#sys.path.append('script/')
-import install_env as install_env
-
 import pandas as pd
 from pandas.core.series import Series
 import streamlit as st
@@ -10,7 +7,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.graph_objs import Figure
 from loguru import logger
-import config as config
+from fx_analytics import config
+from fx_analytics import install_env
 
 # functions!
 
@@ -533,7 +531,7 @@ def monthly_percentage_growth(df: pd.DataFrame) -> pd.DataFrame:
 if __name__ == '__main__':
 
     # creating virtual environment!
-    install_env.create_environment()
+    # install_env.create_environment()
 
     #settingup loggin file!
     # setup_logging(config.LOG_PATH)
