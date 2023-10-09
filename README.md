@@ -40,7 +40,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
    ```bash
    streamlit run app.py
 
-5. **if you want to run ETL.py and app.py together then**:
+5. **If you want to run ETL.py and app.py together then**:
    - I have commented git commands as this file also updates all the changes to the git once the file is run (it could be usefull if you deploy you   streamlit app to the server)
    ```bash
    python main_run.py
