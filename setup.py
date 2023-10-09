@@ -1,12 +1,14 @@
 from setuptools import setup, find_packages
 
 with open('README.md') as f:
-    description = f.read()
+    long_description = f.read()
 setup(
     name="fx_analytics",
     version="0.1",
     description = "A streamlit dashboard which displays all the forex metric from your trading platforms",
     packages=['fx_analytics'],
+    long_description = long_description,
+    long_description_content_type = "text/markdown",
     url= "https://github.com/jaybfn/forex_dashboard",
     author = "Jayesh Arun Bafna",
     author_email = "jayesh.bfn@gmail.com",
