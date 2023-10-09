@@ -1,0 +1,56 @@
+2023-10-03 16:52:41.000 | INFO     | main_functions:extract_data_mt5:40 - MetaTrader5 package author: %s
+2023-10-03 16:52:41.005 | INFO     | main_functions:extract_data_mt5:41 - MetaTrader5 package version: %s
+2023-10-03 16:52:41.007 | INFO     | main_functions:extract_data_mt5:54 - history_deals_get(%s, %s) = %d
+2023-10-03 16:52:41.023 | INFO     | main_functions:data_transformation:77 - Data transformation in process ....
+2023-10-03 16:52:41.037 | INFO     | main_functions:data_transformation:92 - Data transformation done!
+2023-10-03 16:52:41.037 | INFO     | __main__:load:41 - Start inserting data into {}
+2023-10-03 16:52:41.038 | INFO     | __main__:load:43 - Data extraction completed at 2023-10-03 16:52:41.038668
+2023-10-03 16:52:41.038 | INFO     | __main__:load:44 - Program completed successfully.
+2023-10-03 16:59:24.900 | INFO     | main_functions:extract_data_mt5:40 - MetaTrader5 package author: %s
+2023-10-03 16:59:24.901 | INFO     | main_functions:extract_data_mt5:41 - MetaTrader5 package version: %s
+2023-10-03 16:59:24.902 | INFO     | main_functions:extract_data_mt5:54 - history_deals_get(%s, %s) = %d
+2023-10-03 16:59:24.905 | INFO     | main_functions:data_transformation:77 - Data transformation in process ....
+2023-10-03 16:59:24.908 | INFO     | main_functions:data_transformation:92 - Data transformation done!
+2023-10-03 16:59:24.909 | INFO     | __main__:load:41 - Start inserting data into {}
+2023-10-03 16:59:24.909 | INFO     | __main__:load:43 - Data extraction completed at 2023-10-03 16:59:24.909117
+2023-10-03 16:59:24.909 | INFO     | __main__:load:44 - Program completed successfully.
+2023-10-03 17:05:07.876 | INFO     | main_functions:extract_data_mt5:40 - MetaTrader5 package author: %s
+2023-10-03 17:05:07.877 | INFO     | main_functions:extract_data_mt5:41 - MetaTrader5 package version: %s
+2023-10-03 17:05:07.878 | INFO     | main_functions:extract_data_mt5:54 - history_deals_get(%s, %s) = %d
+2023-10-03 17:05:07.881 | INFO     | main_functions:data_transformation:77 - Data transformation in process ....
+2023-10-03 17:05:07.884 | INFO     | main_functions:data_transformation:92 - Data transformation done!
+2023-10-03 17:05:07.884 | INFO     | __main__:load:41 - Start inserting data into {}
+2023-10-03 17:05:07.884 | INFO     | __main__:load:43 - Data extraction completed at 2023-10-03 17:05:07.884194
+2023-10-03 17:05:07.884 | INFO     | __main__:load:44 - Program completed successfully.
+2023-10-03 17:15:40.651 | INFO     | main_functions:extract_data_mt5:40 - MetaTrader5 package author: %s
+2023-10-03 17:15:40.652 | INFO     | main_functions:extract_data_mt5:41 - MetaTrader5 package version: %s
+2023-10-03 17:15:40.654 | INFO     | main_functions:extract_data_mt5:54 - history_deals_get(%s, %s) = %d
+2023-10-03 17:15:40.658 | INFO     | main_functions:data_transformation:77 - Data transformation in process ....
+2023-10-03 17:15:40.661 | INFO     | main_functions:data_transformation:92 - Data transformation done!
+2023-10-03 17:15:40.662 | INFO     | __main__:load:41 - Start inserting data into {}
+2023-10-03 17:15:40.662 | INFO     | __main__:load:43 - Data extraction completed at 2023-10-03 17:15:40.662866
+2023-10-03 17:15:40.662 | INFO     | __main__:load:44 - Program completed successfully.
+2023-10-03 18:03:17.182 | INFO     | main_functions:extract_data_mt5:40 - MetaTrader5 package author: %s
+2023-10-03 18:03:17.183 | INFO     | main_functions:extract_data_mt5:41 - MetaTrader5 package version: %s
+2023-10-03 18:03:17.183 | INFO     | main_functions:extract_data_mt5:54 - history_deals_get(%s, %s) = %d
+2023-10-03 18:03:17.189 | INFO     | main_functions:data_transformation:77 - Data transformation in process ....
+2023-10-03 18:03:17.194 | INFO     | main_functions:data_transformation:92 - Data transformation done!
+2023-10-03 18:03:17.194 | INFO     | __main__:load:41 - Start inserting data into {}
+2023-10-03 18:03:17.194 | INFO     | __main__:load:43 - Data extraction completed at 2023-10-03 18:03:17.194262
+2023-10-03 18:03:17.194 | INFO     | __main__:load:44 - Program completed successfully.
+2023-10-04 15:37:26.103 | INFO     | main_functions:extract_data_mt5:40 - MetaTrader5 package author: %s
+2023-10-04 15:37:26.104 | INFO     | main_functions:extract_data_mt5:41 - MetaTrader5 package version: %s
+2023-10-04 15:37:26.105 | INFO     | main_functions:extract_data_mt5:54 - history_deals_get(%s, %s) = %d
+2023-10-04 15:37:26.111 | INFO     | main_functions:data_transformation:77 - Data transformation in process ....
+2023-10-04 15:37:26.116 | INFO     | main_functions:data_transformation:92 - Data transformation done!
+2023-10-04 15:37:26.116 | INFO     | __main__:load:41 - Start inserting data into {}
+2023-10-04 15:37:26.117 | INFO     | __main__:load:43 - Data extraction completed at 2023-10-04 15:37:26.117515
+2023-10-04 15:37:26.117 | INFO     | __main__:load:44 - Program completed successfully.
+2023-10-04 15:41:02.661 | INFO     | main_functions:extract_data_mt5:40 - MetaTrader5 package author: %s
+2023-10-04 15:41:02.663 | INFO     | main_functions:extract_data_mt5:41 - MetaTrader5 package version: %s
+2023-10-04 15:41:02.664 | INFO     | main_functions:extract_data_mt5:54 - history_deals_get(%s, %s) = %d
+2023-10-04 15:41:02.667 | INFO     | main_functions:data_transformation:77 - Data transformation in process ....
+2023-10-04 15:41:02.670 | INFO     | main_functions:data_transformation:92 - Data transformation done!
+2023-10-04 15:41:02.671 | INFO     | __main__:load:41 - Start inserting data into {}
+2023-10-04 15:41:02.671 | INFO     | __main__:load:43 - Data extraction completed at 2023-10-04 15:41:02.671992
+2023-10-04 15:41:02.671 | INFO     | __main__:load:44 - Program completed successfully.
