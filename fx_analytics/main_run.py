@@ -14,14 +14,14 @@ repo_directory = os.getcwd()
 subprocess.run(['python', 'ETL.py'])
 
 # # Set up Git credential helper
-# subprocess.run(["git", "config", "--global", "credential.helper", "store"])
+subprocess.run(["git", "config", "--global", "credential.helper", "store"])
 
 # # Add and commit your changes
-# subprocess.run(["git", "add", "."], cwd=repo_directory)
-# subprocess.run(["git", "commit", "-m", msg], cwd=repo_directory)
+subprocess.run(["git", "add", "."], cwd=repo_directory)
+subprocess.run(["git", "commit", "-m", msg], cwd=repo_directory)
 
 # # Push without being prompted for credentials
-# subprocess.run(["git", "push"], cwd=repo_directory)
+subprocess.run(["git", "push"], cwd=repo_directory)
 
 # run the app!
-subprocess.run(['streamlit', 'run', 'app.py'])
+#subprocess.run(['streamlit', 'run', 'app.py'])
