@@ -13,7 +13,8 @@ def check_dataframe_exists_and_not_empty(df):
 # Define a test function
 def test_check_dataframe_exists_and_not_empty():
     # Define the path to the CSV file
-    csv_file_path = 'fx_history.csv'
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_file_path = os.path.join(script_dir, 'fx_history.csv')
     
     # Check if the CSV file exists
     assert os.path.isfile(csv_file_path)
