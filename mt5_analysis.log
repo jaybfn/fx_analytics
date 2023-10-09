@@ -14,3 +14,11 @@
 2023-10-09 15:10:11.615 | INFO     | __main__:load:43 - Start inserting data into {}
 2023-10-09 15:10:11.615 | INFO     | __main__:load:45 - Data extraction completed at 2023-10-09 15:10:11.615480
 2023-10-09 15:10:11.615 | INFO     | __main__:load:46 - Program completed successfully.
+2023-10-09 15:51:47.606 | INFO     | main_functions:extract_data_mt5:46 - MetaTrader5 package author: %s
+2023-10-09 15:51:47.607 | INFO     | main_functions:extract_data_mt5:47 - MetaTrader5 package version: %s
+2023-10-09 15:51:47.609 | INFO     | main_functions:extract_data_mt5:60 - history_deals_get(%s, %s) = %d
+2023-10-09 15:51:47.614 | INFO     | main_functions:data_transformation:85 - Data transformation in process ....
+2023-10-09 15:51:47.619 | INFO     | main_functions:data_transformation:98 - Data transformation done!
+2023-10-09 15:51:47.619 | INFO     | __main__:load:43 - Start inserting data into {}
+2023-10-09 15:51:47.619 | INFO     | __main__:load:45 - Data extraction completed at 2023-10-09 15:51:47.619620
+2023-10-09 15:51:47.619 | INFO     | __main__:load:46 - Program completed successfully.

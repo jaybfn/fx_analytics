@@ -1,1 +1,1 @@
-script
+fx_analytics

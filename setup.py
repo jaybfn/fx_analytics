@@ -6,7 +6,7 @@ setup(
     name="fx_analytics",
     version="0.1",
     description = "A streamlit dashboard which displays all the forex metric from your trading platforms",
-    packages=['script'],
+    packages=['fx_analytics'],
     url= "https://github.com/jaybfn/forex_dashboard",
     author = "Jayesh Arun Bafna",
     author_email = "jayesh.bfn@gmail.com",
