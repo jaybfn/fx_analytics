@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 with open('README.md') as f:
     description = f.read()
 setup(
-    name="fxboard",
+    name="fx_analytics",
     version="0.1",
     description = "A streamlit dashboard which displays all the forex metric from your trading platforms",
     packages=['script'],

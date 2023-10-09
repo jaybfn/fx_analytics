@@ -7,6 +7,7 @@ from loguru import logger
 from credential import mt5_credentials
 import plotly.express as px
 import plotly.graph_objects as go
+import config as config
 
 
 def setup_logging(log_file):
@@ -45,7 +46,7 @@ def extract_data_mt5() -> pd.DataFrame:
         logger.info("MetaTrader5 package author: %s", mt5.__author__)
         logger.info("MetaTrader5 package version: %s", mt5.__version__)
 
-        from_date=datetime(2023,9,1)
+        from_date=config.DATETIME
         to_date=datetime.now()
 
         # get deals for symbols whose names contain "GBP" within a specified interval
