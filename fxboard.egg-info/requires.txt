@@ -1,0 +1,10 @@
+streamlit
+MetaTrader5
+pandas
+plotly
+plotly-express
+loguru
+
+[dev]
+pytest
+twine

@@ -1,0 +1,17 @@
+LICENSE
+README.md
+setup.py
+fxboard.egg-info/PKG-INFO
+fxboard.egg-info/SOURCES.txt
+fxboard.egg-info/dependency_links.txt
+fxboard.egg-info/requires.txt
+fxboard.egg-info/top_level.txt
+script/ETL.py
+script/__init__.py
+script/app.py
+script/config.py
+script/credential.py
+script/install_env.py
+script/main_functions.py
+script/main_run.py
+script/test_read_df.py
