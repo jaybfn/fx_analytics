@@ -24,4 +24,4 @@ subprocess.run(["git", "commit", "-m", msg], cwd=repo_directory)
 subprocess.run(["git", "push"], cwd=repo_directory)
 
 # run the app!
-#subprocess.run(['streamlit', 'run', 'app.py'])
+subprocess.run(['streamlit', 'run', 'app.py'])
