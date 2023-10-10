@@ -24,4 +24,13 @@ subprocess.run(["git", "commit", "-m", msg], cwd=repo_directory)
 subprocess.run(["git", "push"], cwd=repo_directory)
 
 # run the app!
-#subprocess.run(['streamlit', 'run', 'app.py'])
+try:
+<<<<<<< HEAD:fx_analytics/main_run.py
+    subprocess.run(['streamlit', 'run', 'app.py'])
+except KeyboardInterrupt:
+    print("Streamlit app was stopped.")
+=======
+	subprocess.run(['streamlit', 'run', 'app.py'])
+except:
+	print("Streamlit app was stopped.")
+>>>>>>> bd7ca6e313a48d4b47b1e89f46dee59756dc1d51:main_run.py
