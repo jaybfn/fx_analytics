@@ -27,14 +27,14 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
    ```bash
    git clone https://github.com/jaybfn/fx_analytics.git
    cd fx_analytics
-   - the main scripts are in the fx_analytics folder! cd fx_analytics/fx_analytics
 
 2. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
 
 3. **In the credential.py file**:
-
+   ```bash
+   location: cd fx_analytics/credentials.py
    - replace *** from login, server and password and insert your credentials: These are the MT5 terminal credentials associated with your MT5 account
 
 3. **Run the ETL script**:
@@ -46,7 +46,6 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
    streamlit run app.py
 
 5. **If you want to run ETL.py and app.py together then**:
-   - I have commented git commands as this file also updates all the changes to the git once the file is run (you can uncomment the git commands if you deploy you streamlit app to the server)
    ```bash
    python main_run.py
 
