@@ -9,7 +9,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.graph_objs import Figure
 from loguru import logger
-from main_functions import setup_logging
+from fx_analytics.main_functions import setup_logging
 from fx_analytics import config
 # functions!
 
@@ -532,8 +532,8 @@ if __name__ == '__main__':
     # install_env.create_environment()
 
     #settingup loggin file!
-    # setup_logging(config.LOG_PATH)
-    # logger.info("Connection to dashboard is established!")
+    setup_logging(config.LOG_PATH)
+    logger.info("Connection to dashboard is established!")
 
     # setting the page configuration
     base="dark"
