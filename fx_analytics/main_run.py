@@ -2,8 +2,7 @@
 import subprocess
 import os
 from typing import NoReturn
-from main_functions import *
-from fx_analytics import config
+from fx_analytics.main_functions import *
 
 
 
