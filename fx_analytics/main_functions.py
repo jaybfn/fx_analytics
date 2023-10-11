@@ -4,7 +4,7 @@ from datetime import datetime, date
 from typing import List, Dict
 import pandas as pd
 from loguru import logger
-from .credential import mt5_credentials
+#from .credential import mt5_credentials
 import plotly.express as px
 import plotly.graph_objects as go
 from . import config
