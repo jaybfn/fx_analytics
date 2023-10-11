@@ -1,4 +1,4 @@
-name: CI/CD for fx analytics.
+name: CI/CD for fx analytics
 
 on:
   push:
