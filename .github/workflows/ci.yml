@@ -39,7 +39,7 @@ jobs:
           python-version: 3.11
 
       - name: Build Python package
-        run: python setup.py sdist bdist_wheel
+        run: python setup.py bdist_wheel sdist
 
       - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@master
