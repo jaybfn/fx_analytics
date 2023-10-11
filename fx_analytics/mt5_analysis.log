@@ -6,3 +6,4 @@
 2023-10-11 09:39:36.826 | INFO     | __main__:load:45 - Start inserting data into {}
 2023-10-11 09:39:36.826 | INFO     | __main__:load:47 - Data extraction completed at 2023-10-11 09:39:36.826380
 2023-10-11 09:39:36.826 | INFO     | __main__:load:48 - Program completed successfully.
+2023-10-11 18:05:13.778 | INFO     | __main__:main:536 - Connection to dashboard is established!

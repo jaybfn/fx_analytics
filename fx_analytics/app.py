@@ -526,8 +526,8 @@ def monthly_percentage_growth(df: pd.DataFrame) -> pd.DataFrame:
 
     return df_month_cum_growth
 
-if __name__ == '__main__':
-
+def main():
+    
     # creating virtual environment!
     # install_env.create_environment()
 
@@ -708,3 +708,6 @@ if __name__ == '__main__':
             monthly_growth = create_growth_chart(df, weeklygrowth = False)
             st.plotly_chart(monthly_growth)
 
+if __name__ == '__main__':
+
+    main()
