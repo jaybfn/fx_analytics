@@ -3,7 +3,7 @@ import subprocess
 import os
 from typing import NoReturn
 from fx_analytics.main_functions import *
-
+from fx_analytics import app
 
 
 def run_app() -> NoReturn:
