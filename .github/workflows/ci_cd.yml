@@ -23,34 +23,27 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build Python package
-        run: python setup.py bdist_wheel sdist
+        run: python setup.py sdist bdist_wheel
 
       - name: Run tests
         run: pytest
 
+
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11
-      
-      - name: Install wheel
-        run: pip install wheel
-      
-      - name: Build Python package
-        run: python setup.py bdist_wheel sdist
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
 
-      - name: Publish to TestPyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          user: __token__
-          password: ${{ secrets.TEST_PYPI_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
+    - name: Publish package to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__ # This is a standard username for PyPI token authentication
+        password: ${{ secrets.PYPI_API_TOKEN }} # Your PyPI API token stored as a secret in your repository
 
 
