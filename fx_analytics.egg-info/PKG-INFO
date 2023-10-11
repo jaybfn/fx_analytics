@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: fx-analytics
-Version: 0.3
+Version: 0.4
 Summary: A streamlit dashboard which displays all the forex metric from your trading platforms
 Home-page: https://github.com/jaybfn/forex_dashboard
 Author: Jayesh Arun Bafna

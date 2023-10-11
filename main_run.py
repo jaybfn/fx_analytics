@@ -1,10 +1,8 @@
-
-
 import subprocess
 import os
 from typing import NoReturn
 
-def run_scripts(script_path: str) -> NoReturn:
+def run_app(script_path: str) -> NoReturn:
     """
     Executes specific Python scripts located in a given directory.
 
@@ -37,7 +35,7 @@ def run_scripts(script_path: str) -> NoReturn:
 
 if __name__ == "__main__":
     script_directory = os.path.dirname(os.path.abspath(__file__))
-    run_scripts(script_directory)
+    run_app(script_directory)
 
 
 

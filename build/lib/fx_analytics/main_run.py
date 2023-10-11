@@ -1,36 +1,41 @@
 
 import subprocess
 import os
- 
-# Set the current working directory to the folder containing your scripts
-script_directory = os.path.dirname(os.path.abspath(__file__))
+from typing import NoReturn
 
-# message for the git commit!
-msg = "updated new CSV file!"
+def run_scripts(script_path: str) -> NoReturn:
+    """
+    Executes specific Python scripts located in a given directory.
 
-# Set the environment variable for SSH authentication
-#os.environ['GIT_SSH_COMMAND'] =  'ssh -i /c/Users/Asus/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-repo_directory = os.getcwd()
-subprocess.run(['python', 'ETL.py'])
+    This function first changes the current working directory to the one specified,
+    then executes an ETL.py script, and finally runs a Streamlit application.
+    If the Streamlit application is stopped by the user, a message is printed.
 
-# # Set up Git credential helper
-subprocess.run(["git", "config", "--global", "credential.helper", "store"])
+    Args:
+    script_path (str): The file path of the script directory.
 
-# # Add and commit your changes
-subprocess.run(["git", "add", "."], cwd=repo_directory)
-subprocess.run(["git", "commit", "-m", msg], cwd=repo_directory)
+    Raises:
+    KeyboardInterrupt: If the Streamlit application is stopped by the user.
 
-# # Push without being prompted for credentials
-subprocess.run(["git", "push"], cwd=repo_directory)
+    Returns:
+    NoReturn: This function does not return anything, it's meant for script execution only.
+    """
 
-# run the app!
-try:
-<<<<<<< HEAD:fx_analytics/main_run.py
-    subprocess.run(['streamlit', 'run', 'app.py'])
-except KeyboardInterrupt:
-    print("Streamlit app was stopped.")
-=======
-	subprocess.run(['streamlit', 'run', 'app.py'])
-except:
-	print("Streamlit app was stopped.")
->>>>>>> bd7ca6e313a48d4b47b1e89f46dee59756dc1d51:main_run.py
+    # Set the current working directory to the folder containing your scripts
+    os.chdir(script_path)
+
+    # Execute the ETL script
+    subprocess.run(['python', 'ETL.py'])
+
+    # Run the Streamlit app
+    try:
+        subprocess.run(['streamlit', 'run', 'app.py'])
+    except KeyboardInterrupt:
+        print("Streamlit app was stopped.")
+
+
+if __name__ == "__main__":
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    run_scripts(script_directory)
+
+
