@@ -57,7 +57,7 @@ jobs:
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         user: '__token__' # This is a standard username for PyPI token authentication
-        password: ${{ secrets.TEST }} # Your PyPI API token stored as a secret in your repository
+        password: ${{secrets.TEST}} # Your PyPI API token stored as a secret in your repository
         verbose: true
 
 
