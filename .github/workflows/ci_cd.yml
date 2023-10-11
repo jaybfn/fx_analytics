@@ -1,4 +1,4 @@
-name: CI/CD for fx analytics
+name: CI/CD for fx analytics.
 
 on:
   push:
@@ -45,5 +45,6 @@ jobs:
       with:
         user: __token__ # This is a standard username for PyPI token authentication
         password: ${{ secrets.PYPI_API_TOKEN }} # Your PyPI API token stored as a secret in your repository
+        verbose: true
 
 
