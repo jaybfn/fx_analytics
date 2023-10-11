@@ -23,7 +23,7 @@ def setup_logging(log_file):
     logger.remove()  # Remove any previously added log handlers
     logger.add(log_file, rotation="1 day", level="INFO")
 
-def extract_data_mt5() -> pd.DataFrame:
+def extract_data_mt5(mt5_credentials: dict) -> pd.DataFrame:
     
     """This function extracts historical trade data from the mt5 platform using MT5 API!"""
 
