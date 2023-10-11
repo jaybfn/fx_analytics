@@ -3,5 +3,6 @@ streamlit==1.26.0
 plotly==5.16.1
 plotly-express==0.4.1
 loguru==0.7.2
+MetaTrader5
 wheel
 pytest
