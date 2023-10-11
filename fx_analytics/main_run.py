@@ -2,8 +2,9 @@
 import subprocess
 import os
 from typing import NoReturn
-from fx_analytics.main_functions import *
-from fx_analytics.config import *
+from main_functions import *
+from fx_analytics import config
+
 
 
 def run_app() -> NoReturn:
@@ -28,7 +29,7 @@ def run_app() -> NoReturn:
     #os.chdir(script_path)
 
     # Execute the ETL script
-    subprocess.run(['python', 'ETL.py'])
+    #subprocess.run(['python', 'extract_date.py'])
 
     # Run the Streamlit app
     try:

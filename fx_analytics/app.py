@@ -9,23 +9,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.graph_objs import Figure
 from loguru import logger
+from main_functions import setup_logging
 from fx_analytics import config
-from fx_analytics import install_env
-
 # functions!
-
-def setup_logging(log_file):
-    """
-    Set up logging to a file.
-
-    Args:
-        log_file (str): The path to the log file.
-
-    Returns:
-        None
-    """
-    logger.remove()  # Remove any previously added log handlers
-    logger.add(log_file, rotation="1 day", level="INFO")
 
 def get_portfolio_growth(df, profit = True) -> pd.DataFrame:
 

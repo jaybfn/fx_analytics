@@ -4,10 +4,9 @@ from datetime import datetime, date
 from typing import List, Dict
 import pandas as pd
 from loguru import logger
-#from .credential import mt5_credentials
 import plotly.express as px
 import plotly.graph_objects as go
-from . import config
+from fx_analytics import config
 
 
 def setup_logging(log_file):
@@ -23,77 +22,172 @@ def setup_logging(log_file):
     logger.remove()  # Remove any previously added log handlers
     logger.add(log_file, rotation="1 day", level="INFO")
 
-def extract_data_mt5(mt5_credentials: dict) -> pd.DataFrame:
-    
-    """This function extracts historical trade data from the mt5 platform using MT5 API!"""
+def extract_data_mt5(from_date: str, mt5_credentials: dict) -> pd.DataFrame:
+    """
+    Extracts historical trade data from the MetaTrader 5 (MT5) platform using its API.
 
-    # establish MetaTrader 5 connection to a specified trading account
+    This function connects to an MT5 account, retrieves historical trade data for symbols 
+    containing "GBP", and returns the data as a pandas DataFrame. The time period for data 
+    extraction spans from a predefined start date (from_date) to the current date and time.
 
+    Args:
+    from_date (str): A date string in the form of ('2023-09-24').
+    mt5_credentials (dict): A dictionary with keys 'login', 'server', and 'password', providing 
+                            the credentials for the MT5 account.
+
+    Returns:
+    pd.DataFrame: A DataFrame containing historical trade data, or None if the extraction fails.
+
+    Raises:
+    RuntimeError: If MT5 initialization or login fails.
+
+    Example:
+    >>> from_date = '2023-09-24'
+    >>> mt5_credentials = {'login': 123456, 'server': 'YourServer', 'password': 'YourPassword'}
+    >>> historical_data = extract_data_mt5(from_date, mt5_credentials)
+    >>> print(historical_data)
+
+    Note:
+    The function relies on the MetaTrader5 (MT5) Python package and the `config` module for the 
+    start date of the data extraction period. Ensure these dependencies are correctly set up 
+    before using the function.
+    """
+
+    # Initialize MT5 connection
     if not mt5.initialize():
-        logger.info("initialize() failed, error code: %s",mt5.last_error())
-        return None
+        logger.error("initialize() failed, error code: %s", mt5.last_error())
+        raise RuntimeError("MT5 initialization failed")  
     
     try:
-
-        if not mt5.login(login=mt5_credentials['login'], server=mt5_credentials['server'],password=mt5_credentials['password']):
+        # Log in to the MT5 terminal
+        if not mt5.login(login=mt5_credentials['login'], server=mt5_credentials['server'], password=mt5_credentials['password']):
             logger.error("Login failed, error code: %s", mt5.last_error())
-            return None
-    
-        pd.set_option('display.max_columns', 500) # number of columns to be displayed
-        pd.set_option('display.width', 1500)      # max table width to display
+            raise RuntimeError("MT5 login failed")
 
-        # display data on the MetaTrader 5 package
+        # Set display options for data retrieval
+        pd.set_option('display.max_columns', 500)  # Number of columns to be displayed
+        pd.set_option('display.width', 1500)       # Max table width to display
+
+        # Log MetaTrader5 package information
         logger.info("MetaTrader5 package author: %s", mt5.__author__)
         logger.info("MetaTrader5 package version: %s", mt5.__version__)
 
-        from_date=config.DATETIME
-        to_date=datetime.now()
+        # Define the time period for data extraction
+        from_date = datetime.strptime(from_date, '%Y-%m-%d')
+        to_date = datetime.now()
 
-        # get deals for symbols whose names contain "GBP" within a specified interval
-        deals=mt5.history_deals_get(from_date, to_date)
+        # Retrieve historical deals within the specified time period
+        deals = mt5.history_deals_get(from_date, to_date)
 
-        if deals==None:
+        if deals is None:
             error_code = mt5.last_error()
             logger.warning("No deals found, error code = %d", error_code)
+            return None
             
-        elif len(deals)> 0:
-            logger.info("history_deals_get(%s, %s) = %d", from_date, to_date, len(deals))
-            # display these deals as a table using pandas.DataFrame
-            df=pd.DataFrame(list(deals),columns=deals[0]._asdict().keys())
+        elif len(deals) > 0:
+            logger.info("history_deals_get(%s, %s) = %d deals", from_date, to_date, len(deals))
+            # Create a DataFrame from the retrieved deals
+            df = pd.DataFrame(list(deals), columns=deals[0]._asdict().keys())
             df['time'] = pd.to_datetime(df['time'], unit='s')
-                #logging.info("\n%s", df)
-            #return df
-        return df  
+            return df  
     
     finally:
-        # shut down connection to the MetaTrader 5 terminal
+        # Terminate the MT5 connection
         mt5.shutdown()
 
 
 def data_transformation(df: pd.DataFrame) -> pd.DataFrame:
- 
     """
-    Split a DataFrame's 'time' column into separate 'date' and 'time' columns,
-    and create a new DataFrame with selected columns for report analysis.
+    Transforms a DataFrame by splitting its 'time' column into separate 'date' and 'time' columns.
+
+    This function assumes the 'time' column in the input DataFrame contains datetime information 
+    in the format 'YYYY-MM-DD HH:MM:SS'. The function splits this column into two new columns: 
+    'date' (containing 'YYYY-MM-DD') and 'time' (containing 'HH:MM:SS'). The original 'time' column 
+    is converted to string type before the split for ease of processing.
+
+    The new 'date' column is inserted into the original DataFrame, which is then returned with 
+    the additional column.
 
     Args:
-        df (pd.DataFrame): Input DataFrame containing a 'time' column.
-    return:
-        pd.DataFrame: A new DataFrame with 'date' and selected columns for analysis.
+        df (pd.DataFrame): The original DataFrame containing at least a 'time' column with datetime information.
+
+    Returns:
+        pd.DataFrame: The transformed DataFrame with an additional 'date' column and the 'time' 
+                      column split into date and time components.
+
+    Raises:
+        ValueError: If the input DataFrame does not contain a 'time' column.
+
+    Example:
+        >>> original_df = pd.DataFrame({'time': ['2022-01-01 12:00:00', '2022-01-02 13:00:00']})
+        >>> transformed_df = data_transformation(original_df)
+        >>> print(transformed_df)
     """
 
+    # Check if 'time' column exists in the DataFrame
+    if 'time' not in df.columns:
+        raise ValueError("Input DataFrame does not contain a 'time' column")
+
     logger.info("Data transformation in process ....")
-    # Convert 'time' column to string type
+
+    # Convert 'time' column to string type to facilitate splitting
     df['time'] = df['time'].astype(str)
 
-    # Split the 'time' column into 'date' and 'time'
+    # Split the 'time' column into 'date' and 'time' components
     date_time_split = df['time'].str.split(expand=True)
     date_time_split = date_time_split.rename(columns={0: "date", 1: "time"})
+    
+    # Insert the 'date' column into the DataFrame
     df.insert(2, 'date', date_time_split['date'])
 
-    # Create a new DataFrame with selected columns for analysis
-    selected_columns = ['date', 'type', 'volume','position_id','price','commission', 'swap', 'profit', 'fee', 'symbol']
-    df_report_analysis = df[selected_columns]
-    #df_report_analysis = df.copy()
     logger.info("Data transformation done!")
-    return df_report_analysis
+    
+    # Return the DataFrame with the new 'date' column
+    return df
+
+
+def ETL(from_date, mt5_credentials: dict) -> pd.DataFrame:
+    """
+    Performs an Extract, Transform, Load (ETL) process on trading data from the MT5 platform.
+
+    This function extracts trading data using the MetaTrader5 API, transforms the data,
+    logs the process, saves the transformed data as a CSV file, and returns the data as a DataFrame.
+    The data extraction is performed based on the provided MT5 credentials.
+
+    Args:
+    from_date (str): A date string in the form of ('2023-09-24').
+    mt5_credentials (dict): A dictionary containing 'login', 'server', and 'password' for the MT5 account.
+
+    Returns:
+    pd.DataFrame: A DataFrame containing the transformed trading data, sorted by date in descending order.
+
+    Example:
+    >>> from_date = '2023-09-24'
+    >>> mt5_credentials = {'login': 123456, 'server': 'YourServer', 'password': 'YourPassword'}
+    >>> trading_data_df = ETL(from_date, mt5_credentials)
+    >>> print(trading_data_df)
+    """
+
+    # Extract trading data from MT5
+    df = extract_data_mt5(from_date, mt5_credentials)
+
+    # Transform the extracted data
+    df = data_transformation(df)
+
+    # Log the start of data insertion into the database
+    logger.info("Start inserting data into database")  # You might want to specify the database name if available
+
+    # Log the completion of data extraction
+    logger.info("Data extraction completed at {}".format(datetime.now()))
+
+    # Log the successful completion of the program
+    logger.info("Program completed successfully.")
+
+    # Sort the DataFrame by date in descending order
+    df = df.sort_values(by='date', ascending=False)
+
+    # Save the DataFrame to a CSV file
+    df.to_csv(config.FILE_PATH, index=False)
+
+    # Return the transformed data as a DataFrame
+    return df
