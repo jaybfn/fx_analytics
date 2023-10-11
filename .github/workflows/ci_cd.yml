@@ -58,6 +58,7 @@ jobs:
       with:
         user: '__token__' # This is a standard username for PyPI token authentication
         password: ${{ secrets.TEST }} # Your PyPI API token stored as a secret in your repository
+        repository_url: https://test.pypi.org/legacy/
         verbose: true
 
 
