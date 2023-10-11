@@ -1,6 +1,8 @@
 import sys
 import os
 import pandas as pd
+import numpy as np
+import datetime as datetime
 from pandas.core.series import Series
 import streamlit as st
 import plotly.express as px
@@ -30,9 +32,19 @@ def get_portfolio_growth(df, profit = True) -> pd.DataFrame:
     # create a copy of the dataframe
     df = df.copy()
     # extracting orders from the dataframe!
+    # df['date'] = pd.to_datetime(df['date'])
+    # result_df = df.loc[df['type'] != 2]
+    # result_df.loc[:, 'total_profit'] = result_df['profit'] + result_df['swap'] + result_df['commission'] + result_df['fee']
+    # result_df = result_df.groupby('date')['total_profit'].sum().reset_index()
+
+    # extracting orders from the dataframe!
     df['date'] = pd.to_datetime(df['date'])
-    result_df = df.loc[df['type'] != 2]
-    result_df.loc[:, 'total_profit'] = result_df['profit'] + result_df['swap'] + result_df['commission'] + result_df['fee']
+
+    # Use .loc with a condition for assignment
+    df.loc[df['type'] != 2, 'total_profit'] = df['profit'] + df['swap'] + df['commission'] + df['fee']
+
+    # Now, create result_df for grouping
+    result_df = df[df['type'] != 2].copy()  # Explicit copy here
     result_df = result_df.groupby('date')['total_profit'].sum().reset_index()
     
     if profit == True:

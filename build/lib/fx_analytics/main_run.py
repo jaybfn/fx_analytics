@@ -2,8 +2,11 @@
 import subprocess
 import os
 from typing import NoReturn
+from fx_analytics.main_functions import *
+from fx_analytics.config import *
 
-def run_scripts(script_path: str) -> NoReturn:
+
+def run_app() -> NoReturn:
     """
     Executes specific Python scripts located in a given directory.
 
@@ -22,7 +25,7 @@ def run_scripts(script_path: str) -> NoReturn:
     """
 
     # Set the current working directory to the folder containing your scripts
-    os.chdir(script_path)
+    #os.chdir(script_path)
 
     # Execute the ETL script
     subprocess.run(['python', 'ETL.py'])
@@ -35,7 +38,7 @@ def run_scripts(script_path: str) -> NoReturn:
 
 
 if __name__ == "__main__":
-    script_directory = os.path.dirname(os.path.abspath(__file__))
-    run_scripts(script_directory)
+    #script_directory = os.path.dirname(os.path.abspath(__file__))
+    run_app()
 
 
