@@ -186,7 +186,7 @@ def plot_piechart(df):
     return fig
 
 
-def daily_commodities_trade_pie_chart(df: pd.DataFrame, create_symbol_count_dataframe) -> px.Figure:
+def daily_commodities_trade_pie_chart(df: pd.DataFrame, create_symbol_count_dataframe):
     """
     Generate a pie chart visualizing the distribution of commodities trade.
 
