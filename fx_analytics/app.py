@@ -195,7 +195,7 @@ def daily_commodities_trade_pie_chart(df: pd.DataFrame, create_symbol_count_data
 
     Parameters:
     df (pd.DataFrame): A DataFrame containing the commodities trade data. It must contain at least
-                       the columns 'type', 'date', and 'symbol'.
+                    the columns 'type', 'date', and 'symbol'.
     create_symbol_count_dataframe: A function that processes the data for the pie chart.
 
     Returns:
@@ -567,11 +567,8 @@ def main(data_file_path:str):
     st.title('My Forex Dashboard 2023')
     # reading the csv file!
     
-    if os.path.exists(data_file_path):
-        df = pd.read_csv(data_file_path)
-
-    else:
-        st.info("File 'fx_history.csv' does not exist.")
+    
+    df = pd.read_csv(data_file_path)
 
     # creating tabs for displaying daily and total metrics!
     tab1, tab2 = st.tabs(["Daily", "Total"])
