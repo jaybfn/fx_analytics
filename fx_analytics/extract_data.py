@@ -16,7 +16,6 @@ from main_functions import ETL
 
 
 
-
 if __name__ == '__main__':
 
     mt5_credentials = {'login': 7055689, 'server':'ICMarketsSC-MT5-2','password':'4KCEG3Kc'}

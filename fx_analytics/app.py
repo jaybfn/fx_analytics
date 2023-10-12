@@ -11,9 +11,11 @@ from plotly.graph_objs import Figure
 from loguru import logger
 from fx_analytics.main_functions import setup_logging
 from fx_analytics import config
+from typing import List, Dict, Any
+
 # functions!
 
-def get_portfolio_growth(df, profit = True) -> pd.DataFrame:
+def get_portfolio_growth(df: pd.DataFrame, profit = True) -> pd.DataFrame:
 
     # create a copy of the dataframe
     df = df.copy()
@@ -179,9 +181,57 @@ def plot_piechart(df):
                 values=commodity['count'], 
                 names=commodity['symbol'], 
                 color_discrete_sequence=px.colors.sequential.RdBu,
-                title="Distribution of Symbols traded!")
+                title="Commodities/Currency Trade Distribution")
 
     return fig
+
+
+def daily_commodities_trade_pie_chart(df: pd.DataFrame, create_symbol_count_dataframe) -> px.Figure:
+    """
+    Generate a pie chart visualizing the distribution of commodities trade.
+
+    This function takes a DataFrame containing commodities trade data, processes it to obtain
+    the necessary statistics, and then uses these statistics to generate a pie chart.
+
+    Parameters:
+    df (pd.DataFrame): A DataFrame containing the commodities trade data. It must contain at least
+                       the columns 'type', 'date', and 'symbol'.
+    create_symbol_count_dataframe: A function that processes the data for the pie chart.
+
+    Returns:
+    px.Figure: A plotly express Figure object representing the pie chart.
+
+    """
+    # Ensure not to modify the original dataframe
+    df = df.copy()
+
+    # Filter out specific rows based on 'type'
+    df_sym = df.loc[df['type'] == 0]
+
+    # Group by 'date' and 'symbol' and count occurrences
+    commodity = df_sym.groupby(by=['date','symbol']).size().reset_index(name='count')
+
+    # Further group by 'date' and create lists of 'symbols' and their corresponding 'count'
+    commodity = commodity.groupby('date').agg({'symbol': list, 'count': list}).reset_index()
+
+    # Sort values by 'date' in descending order and reset index
+    result_ord = commodity.sort_values(by=['date'], ascending=False).reset_index()
+
+    # Drop the old index column
+    result_ord = result_ord.drop(columns=['index'])
+
+    # Process the dataframe for the pie chart
+    symbol_count_df = create_symbol_count_dataframe(result_ord, row_index=0)
+
+    # Create the pie chart using plotly express
+    fig = px.pie(symbol_count_df,
+                 values=symbol_count_df['count'],
+                 names=symbol_count_df['symbol'],
+                 color_discrete_sequence=px.colors.sequential.RdBu,
+                 title="Daily Commodities Trade Distribution")
+    
+    return fig
+
 
 def create_symbol_count_dataframe(dataframe, row_index= 0):
     """
@@ -195,10 +245,13 @@ def create_symbol_count_dataframe(dataframe, row_index= 0):
     Returns:
         pd.DataFrame: A DataFrame containing symbol-count pairs.
     """
-    symbol_dict = {}  # Create an empty dictionary to store symbol-count pairs
+    # Create an empty dictionary to store symbol-count pairs
+    symbol_dict = {}  
+
     # create a copy of the dataframe
     dataframe = dataframe.copy()
 
+    # Iterate over each symbol-count pair in the specified row
     for i in range(len(dataframe.loc[row_index, 'symbol'])):
         symbol = dataframe.loc[row_index, 'symbol'][i]
         count = dataframe.loc[row_index, 'count'][i]
@@ -208,6 +261,7 @@ def create_symbol_count_dataframe(dataframe, row_index= 0):
 
     # Convert the dictionary into a DataFrame
     df = pd.DataFrame.from_dict(symbol_dict, orient='index', columns=['count']).reset_index()
+    # Rename the 'index' column to 'symbol'
     df.rename(columns={'index': 'symbol'}, inplace=True)
 
     return df
@@ -314,41 +368,6 @@ def extract_latest_pip_growth(data: pd.DataFrame) -> pd.DataFrame:
 
     return df_pip_latest
 
-
-def plot_pip_daily_growth(data:pd.DataFrame):
-    """
-    Create a bar plot of pip growth with positive pip growth in green and negative pip growth in red.
-
-    Args:
-        data (pd.DataFrame): A DataFrame containing 'symbol' and 'pip_growth' columns.
-
-    Returns:
-        None: Displays the Plotly bar plot.
-    """
-    # create a barplot
-    
-    # initilize the fig object
-    fig = go.Figure()
-    # Add a bar trace to the figure
-    fig.add_trace(go.Bar(
-        x=data_daily['symbol'],
-        y=data_daily['pip_growth'],
-        text=data_daily['symbol'],
-        textposition='auto',
-        marker=dict(
-            color=data_daily['pip_growth'].apply(lambda x: 'limegreen' if x >= 0 else 'lightcoral'),
-            line=dict(color='black', width=1),),
-        
-    ))
-
-    # Customize the layout
-    fig.update_layout(
-        font=dict(color='white'),
-        xaxis_title='Symbol',
-        yaxis_title='Pip Growth',
-    )
-
-    return fig
 
 def create_growth_chart(df: pd.DataFrame, weeklygrowth: bool = True) -> Figure:
     """
@@ -526,11 +545,8 @@ def monthly_percentage_growth(df: pd.DataFrame) -> pd.DataFrame:
 
     return df_month_cum_growth
 
-def main():
+def main(data_file_path:str):
     
-    # creating virtual environment!
-    # install_env.create_environment()
-
     #settingup loggin file!
     setup_logging(config.LOG_PATH)
     logger.info("Connection to dashboard is established!")
@@ -551,8 +567,8 @@ def main():
     st.title('My Forex Dashboard 2023')
     # reading the csv file!
     
-    if os.path.exists(config.FILE_PATH):
-        df = pd.read_csv(config.FILE_PATH)
+    if os.path.exists(data_file_path):
+        df = pd.read_csv(data_file_path)
 
     else:
         st.info("File 'fx_history.csv' does not exist.")
@@ -667,27 +683,17 @@ def main():
             profitplot = profit_over_time(get_portfolio_growth(df), 'date', 'growth', title="Daily Profit", yaxis_title= 'Daily Profit (€)')
             st.plotly_chart(profitplot)
 
-        DailyCommodityDeals, CommodityDeals = st.columns(2)
+        DailyCommodityDeals, TotalCommodityDeals = st.columns(2)
 
         with DailyCommodityDeals:
-            df = df.copy()
-            df_sym = df.loc[df['type'] == 0]
-            commodity = df_sym.groupby(by=['date','symbol']).size().reset_index(name = 'count')
-            commodity = commodity.groupby('date').agg({'symbol': list, 'count': list}).reset_index()
-            result_ord = commodity.sort_values(by=['date'], ascending=False).reset_index()
-            result_ord = result_ord.drop(columns = ['index'])
-            symbol_count_df  = create_symbol_count_dataframe(result_ord, row_index= 0)
-            fig = px.pie(symbol_count_df, 
-                values=symbol_count_df['count'], 
-                names=symbol_count_df['symbol'], 
-                color_discrete_sequence=px.colors.sequential.RdBu,
-                title="Daily Distribution of Symbols traded!")
-            st.plotly_chart(fig)
 
-        with CommodityDeals:
+            daily_commodity_deals = daily_commodities_trade_pie_chart(df, create_symbol_count_dataframe)
+            st.plotly_chart(daily_commodity_deals)
 
-            commodity_deals = plot_piechart(df)
-            st.plotly_chart(commodity_deals)
+        with TotalCommodityDeals:
+
+            total_commodity_deals = plot_piechart(df)
+            st.plotly_chart(total_commodity_deals)
 
 
         Trades, WeeklyGrowth, MonthlyGrowthProfit = st.columns(3, gap="medium")
@@ -709,5 +715,5 @@ def main():
             st.plotly_chart(monthly_growth)
 
 if __name__ == '__main__':
-
-    main()
+    data_file_path = 'fx_history.csv'
+    main(data_file_path)

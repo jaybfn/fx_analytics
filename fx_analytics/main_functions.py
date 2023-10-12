@@ -113,7 +113,7 @@ def data_transformation(df: pd.DataFrame) -> pd.DataFrame:
 
     Returns:
         pd.DataFrame: The transformed DataFrame with an additional 'date' column and the 'time' 
-                      column split into date and time components.
+                    column split into date and time components.
 
     Raises:
         ValueError: If the input DataFrame does not contain a 'time' column.
@@ -146,7 +146,7 @@ def data_transformation(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def ETL(from_date, mt5_credentials: dict) -> pd.DataFrame:
+def ETL(from_date: str, mt5_credentials: dict) -> pd.DataFrame:
     """
     Performs an Extract, Transform, Load (ETL) process on trading data from the MT5 platform.
 
@@ -185,9 +185,6 @@ def ETL(from_date, mt5_credentials: dict) -> pd.DataFrame:
 
     # Sort the DataFrame by date in descending order
     df = df.sort_values(by='date', ascending=False)
-
-    # Save the DataFrame to a CSV file
-    df.to_csv(config.FILE_PATH, index=False)
 
     # Return the transformed data as a DataFrame
     return df
