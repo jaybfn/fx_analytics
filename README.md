@@ -81,7 +81,7 @@ which was extracted from MT5, download [data](https://github.com/jaybfn/fx_analy
 
 ## Output
    - streamlit app preview:
-   ![picture alt](https://github.com/jaybfn/fx_analytics/blob/main/streamlit_preview.jpg)
+   ![picture alt](https://github.com/jaybfn/fx_analytics/blob/main/fx_analytics/streamlit_preview.jpg)
 
 ## Feedback and Contribution
 - We welcome feedback and contributions! If you encounter any issues or have suggestions, please open an issue. If you'd like to contribute, please create a pull request.
