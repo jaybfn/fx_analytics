@@ -7,18 +7,19 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
 ## Features
 
 - **ETL Process**: Extracts trading data from the MT5 terminal, transforms it for analysis, and loads it into a CSV file.
-- **GitHub Integration**: Pushes the updated CSV to the repository, ensuring data is always up-to-date.
 - **Streamlit Dashboard**: Displays key performance metrics, including:
   - Daily wins and losses.
   - Traded commodities breakdown.
-  - Profit and loss amounts.
-  - Daily and overall growth percentages.
-- **Pip Package**: The repository also contains scripts to build a pip package for easy distribution and installation.
+  - Profit gains and losses. 
+  - Daily and overall portfolio growth.
+  - Commissions paid.
+  - Daily and Total Trades executed.
+  - Weekly and Monthly gains.
 
 ## Prerequisites
-
+- Operating System: Windows (Tested on Windows 11)
 - MT5 terminal installed on a Windows machine.
-- Python >= 3.11 environment with necessary packages (refer to `requirements.txt` for a detailed list).
+- Python >= 3.11 environment with necessary packages.
 
 ## Setup and Usage
 1. Create a Conda Environment:
@@ -31,6 +32,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
 
    ```bash
    pip install fx_analytics
+   pip install MetaTrader5 -> required to access MT5 for your historical trade deals!
    ```
 
 3. To extract all your historical trades data from MT5 Terminal:
@@ -73,7 +75,7 @@ which was extracted from MT5, download [data](https://github.com/jaybfn/fx_analy
    from fx_analytics.main_functions import ETL
 
    if __name__ == '__main__:
-
+      # replace '****' with your login credential from MT5 terminal!
       mt5_credentials = {'login': '******', 'server':'******','password':'******'}
       df = ETL(from_date='2023-09-28', mt5_credentials)
       df.to_csv('data_file_path')
