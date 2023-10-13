@@ -28,7 +28,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
 
 ## usage
 
-   **To extract all your historical trades data from MT5 Terminal**:
+1. **To extract all your historical trades data from MT5 Terminal**:
    ```bash
    import fx_analytics
    from fx_analytics.main_functions import ETL
@@ -37,7 +37,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
    df = ETL(from_date='2023-09-01', mt5_credentials)
    print(df)
 
-   **To use/test the streamlit app from the package: To test app you can download the example data which was extracted from MT5 from here, click [data](https://github.com/jaybfn/fx_analytics/blob/main/fx_history.csv)**
+2. **To use/test the streamlit app from the package: To test app you can download the example data which was extracted from MT5 from here, click      [data](https://github.com/jaybfn/fx_analytics/blob/main/fx_history.csv)**
    **Copy the below code into .py file**
    ```bash
    import fx_analytics 
@@ -48,7 +48,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
    To Run this file from CLI:
    streamlit run {file_name.py}
 
-   **To run both ETL to extract your data from MT5 and view the analytics streamlit dashboard**
+3. **To run both ETL to extract your data from MT5 and view the analytics streamlit dashboard**
    - create a python script 'app.py' and copy and past the below code, change the 'from_date' with your desired date and 'data_file_path', where you choose to stores the data extracted from ETL function, I prefer to use a data folder eg: 'data/{file_name.csv}'
 
    ```bash
