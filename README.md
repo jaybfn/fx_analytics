@@ -23,28 +23,35 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
 ## Setup and Usage
 
 1. Clone the Repository:
+
    ```bash
    pip install fx_analytics
    ```
 
 2. To extract all your historical trades data from MT5 Terminal:
+
    ```python
    import fx_analytics
    from fx_analytics.main_functions import ETL
 
-   mt5_credentials = {'login': '******', 'server':'******','password':'******'}
-   df = ETL(from_date='2023-09-01', mt5_credentials)
-   print(df)
+   if __name__ == '__main__:
+
+      mt5_credentials = {'login': '******', 'server':'******','password':'******'}
+      df = ETL(from_date='2023-09-01', mt5_credentials)
+      print(df)
    ```
 
 3. To use/test the streamlit app from the package: To test app you can download the example data 
-which was extracted from MT5 from here, click [data](https://github.com/jaybfn/fx_analytics/blob/main/fx_history.csv)
+which was extracted from MT5, download [data](https://github.com/jaybfn/fx_analytics/blob/main/fx_history.csv).
    - Copy the below code into .py file
-   ```python
-   - import fx_analytics 
-   - from fx_analytics.app import main
 
-   - main('fx_history.csv')
+   ```python
+   import fx_analytics 
+   from fx_analytics.app import main
+
+   if __name__ == '__main__:
+
+      main('fx_history.csv')
    ```
 
    To Run this file from CLI:
@@ -54,21 +61,24 @@ which was extracted from MT5 from here, click [data](https://github.com/jaybfn/f
 
 4. To run both ETL to extract your data from MT5 and view the analytics streamlit dashboard
    - create a python script 'app.py' and copy and past the below code, change the 'from_date' with your desired date and 'data_file_path', where you choose to stores the data extracted from ETL function, I prefer to use a data folder eg: 'data/{file_name.csv}'
+
    ```python
    import fx_analytics 
    from fx_analytics.app import main
    from fx_analytics.main_functions import ETL
 
-   mt5_credentials = {'login': '******', 'server':'******','password':'******'}
-   df = ETL(from_date='2023-09-28', mt5_credentials)
-   df.to_csv('data_file_path')
-   main('data_file_path')
+   if __name__ == '__main__:
+
+      mt5_credentials = {'login': '******', 'server':'******','password':'******'}
+      df = ETL(from_date='2023-09-28', mt5_credentials)
+      df.to_csv('data_file_path')
+      main('data_file_path')
    ```
    To Run this file from CLI:
    ```bash
    streamlit run app.py
    ```
-   
+
 ## Feedback and Contribution
 - We welcome feedback and contributions! If you encounter any issues or have suggestions, please open an issue. If you'd like to contribute, please create a pull request.
    
