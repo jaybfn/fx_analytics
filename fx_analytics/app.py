@@ -623,14 +623,24 @@ def main(data_file_path:str):
             
             with Weekly_growth:
                 df_weekly_cum_growth = weekly_percentage_growth(df)
-                current_growth = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()[0]
-                previous_week_growth = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()[1]
+                weekly_growth_list = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()
+                if len(weekly_growth_list) > 1:
+                    current_growth = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()[0]
+                    previous_week_growth = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()[1]
+                else:
+                    current_growth = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()[0]
+                    previous_week_growth = None
                 st.metric(label = 'Weekly Growth', value = f"{current_growth} %", delta = f"{previous_week_growth} %" )
 
             with Monthly_growth:
                 df_month_cum_growth = monthly_percentage_growth(df)
-                current_month_growth = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()[0]
-                previous_month_growth = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()[1]
+                monthly_growth_list = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()
+                if len(monthly_growth_list) >1:
+                    current_month_growth = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()[0]
+                    previous_month_growth = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()[1]
+                else:
+                    current_month_growth = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()[0]
+                    previous_month_growth = None
                 st.metric(label = 'monthly_growth', value = f"{current_month_growth} %", delta = f"{previous_month_growth} %" )
 
     with tab2:

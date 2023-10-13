@@ -1,9 +1,1 @@
-2023-10-11 09:39:36.796 | INFO     | fx_analytics.main_functions:extract_data_mt5:46 - MetaTrader5 package author: %s
-2023-10-11 09:39:36.799 | INFO     | fx_analytics.main_functions:extract_data_mt5:47 - MetaTrader5 package version: %s
-2023-10-11 09:39:36.801 | INFO     | fx_analytics.main_functions:extract_data_mt5:60 - history_deals_get(%s, %s) = %d
-2023-10-11 09:39:36.816 | INFO     | fx_analytics.main_functions:data_transformation:85 - Data transformation in process ....
-2023-10-11 09:39:36.826 | INFO     | fx_analytics.main_functions:data_transformation:98 - Data transformation done!
-2023-10-11 09:39:36.826 | INFO     | __main__:load:45 - Start inserting data into {}
-2023-10-11 09:39:36.826 | INFO     | __main__:load:47 - Data extraction completed at 2023-10-11 09:39:36.826380
-2023-10-11 09:39:36.826 | INFO     | __main__:load:48 - Program completed successfully.
-2023-10-11 18:05:13.778 | INFO     | __main__:main:536 - Connection to dashboard is established!
+2023-10-13 15:21:21.827 | INFO     | __main__:main:552 - Connection to dashboard is established!
