@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
     required = f.read().splitlines()
 setup(
     name="fx_analytics",
-    version="1.4.3",
+    version="1.4.4",
     description = "A streamlit dashboard which displays all the forex metric from your trading platforms",
     packages=['fx_analytics'],
     long_description = long_description,
