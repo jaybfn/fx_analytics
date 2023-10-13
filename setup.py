@@ -16,15 +16,6 @@ setup(
     author = "Jayesh Arun Bafna",
     author_email = "jayesh.bfn@gmail.com",
     license= "MIT",
-    install_requires=[
-        "streamlit",
-        "MetaTrader5",
-        "pandas",
-        "plotly",
-        "plotly-express",
-        "loguru"
-        # Add other dependencies here
-    ],
     extras_require = {"dev":["pytest","twine"],},
     install_requires=required,
     python_requires=">=3.11"
