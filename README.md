@@ -18,17 +18,22 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
 ## Prerequisites
 
 - MT5 terminal installed on a Windows machine.
-- Python==3.11 environment with necessary packages (refer to `requirements.txt` for a detailed list).
+- Python >= 3.11 environment with necessary packages (refer to `requirements.txt` for a detailed list).
 
 ## Setup and Usage
+1. Create a Conda Environment:
 
-1. Clone the Repository:
+   ```bash
+   conda create --name <env_name> python=3.11.6 
+   ```
+
+2. Clone the Repository:
 
    ```bash
    pip install fx_analytics
    ```
 
-2. To extract all your historical trades data from MT5 Terminal:
+3. To extract all your historical trades data from MT5 Terminal:
 
    ```python
    import fx_analytics
@@ -41,7 +46,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
       print(df)
    ```
 
-3. To use/test the streamlit app from the package: To test app you can download the example data 
+4. To use/test the streamlit app from the package: To test app you can download the example data 
 which was extracted from MT5, download [data](https://github.com/jaybfn/fx_analytics/blob/main/fx_history.csv).
    - Copy the below code into .py file
 
@@ -59,7 +64,7 @@ which was extracted from MT5, download [data](https://github.com/jaybfn/fx_analy
    streamlit run {file_name.py}
    ```
 
-4. To run both ETL to extract your data from MT5 and view the analytics streamlit dashboard
+5. To run both ETL to extract your data from MT5 and view the analytics streamlit dashboard
    - create a python script 'app.py' and copy and past the below code, change the 'from_date' with your desired date and 'data_file_path', where you choose to stores the data extracted from ETL function, I prefer to use a data folder eg: 'data/{file_name.csv}'
 
    ```python
@@ -81,7 +86,7 @@ which was extracted from MT5, download [data](https://github.com/jaybfn/fx_analy
 
 ## Output
    - streamlit app preview:
-   ![picture alt](https://github.com/jaybfn/fx_analytics/blob/main/fx_analytics/streamlit_preview.jpg)
+   ![picture alt](https://github.com/jaybfn/fx_analytics/blob/main/fx_analytics/streamlit_preview.jpg?raw=true)
 
 ## Feedback and Contribution
 - We welcome feedback and contributions! If you encounter any issues or have suggestions, please open an issue. If you'd like to contribute, please create a pull request.
