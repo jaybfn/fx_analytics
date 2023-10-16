@@ -4,7 +4,7 @@
 
 | **Testing** | **CI - Test Coverage** |
 |-------------|------------------------|
-| [![Testing Status](https://github.com/jaybfn/fx_analytics/workflows/ci_cd/badge.svg)](https://github.com/jaybfn/fx_analytics/actions)
+| [![Testing Status](https://github.com/jaybfn/fx_analytics/actions/workflows/pytest_ci/badge.svg)](https://github.com/jaybfn/fx_analytics/actions)
 
 
 | **Package** | **Meta** |
