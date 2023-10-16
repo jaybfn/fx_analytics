@@ -1,5 +1,17 @@
 # Forex Dashboard
 
+## Project Status
+
+| **Testing** | **CI - Test Coverage** |
+|-------------|------------------------|
+| [![Testing Status](https://github.com/your-username/your-repo-name/workflows/Your%20Workflow%20Name/badge.svg)](https://github.com/jaybfn/fx_analytics/actions)
+
+
+| **Package** | **Meta** |
+|-------------|---------|
+| [![PyPI Latest Release](https://img.shields.io/pypi/v/your-package-name)](https://pypi.org/project/fx-analytics/) |
+
+
 ## Overview
 
 Forex Dashboard is a comprehensive tool designed for Forex traders to monitor and analyze their trading performance metrics. By seamlessly integrating with the MT5 terminal on Windows, the tool extracts trading deals, processes the data, and presents it in a user-friendly dashboard using Streamlit. This dashboard provides traders with insights into their daily wins, traded commodities, profit margins, and overall growth percentages.
