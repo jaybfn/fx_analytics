@@ -9,7 +9,7 @@
 
 | **Package** | **Meta** |
 |-------------|---------|
-| [![PyPI Latest Release](https://img.shields.io/pypi/v/analytics)](https://pypi.org/project/fx-analytics/) |
+| [![PyPI Latest Release](https://img.shields.io/pypi/v/analytics)](https://github.com/jaybfn/fx_analytics/actions/workflows/pytest_ci) |
 
 
 ## Overview
