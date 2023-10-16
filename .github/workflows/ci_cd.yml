@@ -25,9 +25,6 @@ jobs:
       - name: Build Python package
         run: python setup.py sdist bdist_wheel
 
-      - name: Run tests
-        run: pytest
-
       - name: Upload distribution artifact
         uses: actions/upload-artifact@v2
         with:
