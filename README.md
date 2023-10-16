@@ -44,7 +44,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
    
    # replace '****' with your login credential from MT5 terminal!
    mt5_credentials = {'login': '******', 'server':'******','password':'******'}
-   df = ETL(from_date='2023-09-01', mt5_credentials)
+   df = ETL(from_date='2023-09-01', mt5_credentials = mt5_credentials)
    print(df)
    ```
 
@@ -74,7 +74,7 @@ which was extracted from MT5, download [data](https://github.com/jaybfn/fx_analy
 
    # replace '****' with your login credential from MT5 terminal!
    mt5_credentials = {'login': '******', 'server':'******','password':'******'}
-   df = ETL(from_date='2023-09-28', mt5_credentials)
+   df = ETL(from_date='2023-09-28', mt5_credentials = mt5_credentials)
    df.to_csv('data_file_path')
    main('data_file_path')
    ```

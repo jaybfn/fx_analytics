@@ -6,7 +6,7 @@ with open('README.md') as f:
 
 setup(
     name="fx_analytics",
-    version="1.0.0",
+    version="1.5.5",
     description = "A streamlit dashboard which displays all the forex metric from your trading platforms",
     packages=['fx_analytics'],
     long_description = long_description,
