@@ -2,14 +2,12 @@
 
 ## Project Status
 
-| **Testing** | **CI - Test Coverage** |
-|-------------|------------------------|
-| [![Testing Status](https://github.com/jaybfn/fx_analytics/actions/workflows/pytest_ci.yml/badge.svg)](https://github.com/jaybfn/fx_analytics/actions)
+| **Testing** |[![Testing Status](https://github.com/jaybfn/fx_analytics/actions/workflows/pytest_ci.yml/badge.svg)](https://github.com/jaybfn/fx_analytics/actions)
 
 
-| **Package** | **Meta** |
-|-------------|---------|
-| [![PyPI Latest Release](https://img.shields.io/pypi/v/analytics)](https://github.com/jaybfn/fx_analytics/)
+
+
+| **Package** |[![PyPI Latest Release](https://img.shields.io/pypi/v/fx-analytics)](https://pypi.org/project/fx-analytics/)
 
 
 ## Overview
