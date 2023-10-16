@@ -41,11 +41,11 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
    import fx_analytics
    from fx_analytics.main_functions import ETL
 
-   if __name__ == '__main__:
-      # replace '****' with your login credential from MT5 terminal!
-      mt5_credentials = {'login': '******', 'server':'******','password':'******'}
-      df = ETL(from_date='2023-09-01', mt5_credentials)
-      print(df)
+   
+   # replace '****' with your login credential from MT5 terminal!
+   mt5_credentials = {'login': '******', 'server':'******','password':'******'}
+   df = ETL(from_date='2023-09-01', mt5_credentials)
+   print(df)
    ```
 
 4. To use/test the streamlit app from the package: To test app you can download the example data 
@@ -56,9 +56,7 @@ which was extracted from MT5, download [data](https://github.com/jaybfn/fx_analy
    import fx_analytics 
    from fx_analytics.app import main
 
-   if __name__ == '__main__:
-
-      main('fx_history.csv')
+   main('fx_history.csv')
    ```
 
    To Run this file from CLI:
@@ -74,12 +72,11 @@ which was extracted from MT5, download [data](https://github.com/jaybfn/fx_analy
    from fx_analytics.app import main
    from fx_analytics.main_functions import ETL
 
-   if __name__ == '__main__:
-      # replace '****' with your login credential from MT5 terminal!
-      mt5_credentials = {'login': '******', 'server':'******','password':'******'}
-      df = ETL(from_date='2023-09-28', mt5_credentials)
-      df.to_csv('data_file_path')
-      main('data_file_path')
+   # replace '****' with your login credential from MT5 terminal!
+   mt5_credentials = {'login': '******', 'server':'******','password':'******'}
+   df = ETL(from_date='2023-09-28', mt5_credentials)
+   df.to_csv('data_file_path')
+   main('data_file_path')
    ```
    To Run this file from CLI:
    ```bash
