@@ -6,7 +6,7 @@ with open('README.md') as f:
 
 setup(
     name="fx_analytics",
-    version="1.5.7",
+    version="1.5.8",
     packages=['fx_analytics'],
     long_description = long_description,
     long_description_content_type = "text/markdown",

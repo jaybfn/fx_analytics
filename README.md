@@ -4,12 +4,12 @@
 
 | **Testing** | **CI - Test Coverage** |
 |-------------|------------------------|
-| [![Testing Status](https://github.com/your-username/your-repo-name/workflows/Your%20Workflow%20Name/badge.svg)](https://github.com/jaybfn/fx_analytics/actions)
+| [![Testing Status](https://github.com/jaybfn/fx_analytics/workflows/ci_cd/badge.svg)](https://github.com/jaybfn/fx_analytics/actions)
 
 
 | **Package** | **Meta** |
 |-------------|---------|
-| [![PyPI Latest Release](https://img.shields.io/pypi/v/your-package-name)](https://pypi.org/project/fx-analytics/) |
+| [![PyPI Latest Release](https://img.shields.io/pypi/v/analytics)](https://pypi.org/project/fx-analytics/) |
 
 
 ## Overview
