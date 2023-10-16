@@ -23,7 +23,8 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
   - Weekly and Monthly gains.
 
 ## Prerequisites
-- Operating System: Windows (Tested on Windows 11)
+- Operating System: [https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white
+] (Tested on Windows 11)
 - MT5 terminal installed on a Windows machine.
 - Python >= 3.11 environment with necessary packages.
 
