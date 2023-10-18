@@ -31,7 +31,7 @@ Forex Dashboard is a comprehensive tool designed for Forex traders to monitor an
 1. Create a Conda Environment:
 
    ```bash
-   conda create --name <env_name> python=3.11.6 
+   conda create --name <env_name> python=3.11
    ```
 
 2. Clone the Repository:
