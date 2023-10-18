@@ -446,7 +446,7 @@ def weekly_percentage_growth(df: pd.DataFrame) -> pd.DataFrame:
     Returns:
     - pandas.DataFrame: DataFrame with weekly percentage growth and related metrics.
     """
-    # create a copy of the dataframe
+        # create a copy of the dataframe
     df = df.copy()
     
     # Convert 'date' column to datetime format
@@ -477,21 +477,24 @@ def weekly_percentage_growth(df: pd.DataFrame) -> pd.DataFrame:
     df_weekly_percentage_growth.loc[:, 'cummulative_weekly_growth'] = df_weekly_percentage_growth['total_profit'].cumsum()
     
     # Calculate the daily balance by adding deposit to cumulative weekly growth
-    df_weekly_percentage_growth.loc[:, 'daily_balance'] =  deposit + df_weekly_percentage_growth['cummulative_weekly_growth']
-    
-    # Calculate the percentage weekly growth based on deposit
-    df_weekly_percentage_growth.loc[:, 'percentage_weekly_growth_%'] = round((df_weekly_percentage_growth['cummulative_weekly_growth'] / deposit), 3)
-    
-    # Calculate the cumulative weekly percentage growth based on the percentage weekly growth
-    df_weekly_percentage_growth.loc[:, 'cummulative_weekly_percentage_growth_%'] = round(df_weekly_percentage_growth['percentage_weekly_growth_%'].diff() * 100, 3)
-    
+    df_weekly_percentage_growth.loc[:, 'weekly_balance'] =  deposit + df_weekly_percentage_growth['cummulative_weekly_growth']
+
     # Sort the DataFrame by year, month, and week in descending order
     df_weekly_percentage_growth = df_weekly_percentage_growth.sort_values(by=['year', 'month', 'week'], ascending=False)
-    
-    # Slice the DataFrame to get the first two rows
-    df_weekly_cum_growth = df_weekly_percentage_growth.iloc[:2]
 
-    return df_weekly_cum_growth
+    # shifting the dataframe by 1 week to calculate weekly growth
+    df_weekly_percentage_growth['weekly_profit_shift1'] = df_weekly_percentage_growth['total_profit'].shift(1)
+
+    # after shifting the dataframe by week 1, the first row contains NaN value , so we need to drop it
+    df_weekly_percentage_growth = df_weekly_percentage_growth.dropna()
+
+    # calculating weekly growth by taking ratio of weekly profit to last week revenue!
+    df_weekly_percentage_growth['weekly_growth_%'] = round((df_weekly_percentage_growth['weekly_profit_shift1'] / df_weekly_percentage_growth['weekly_balance']),3)*100
+
+    # Slice the DataFrame to get the first two rows
+    df_weekly_percentage_growth = df_weekly_percentage_growth.iloc[:2]
+
+    return df_weekly_percentage_growth
 
 def monthly_percentage_growth(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -529,17 +532,20 @@ def monthly_percentage_growth(df: pd.DataFrame) -> pd.DataFrame:
     df_month_percentage_growth.loc[:, 'cummulative_monthly_growth'] = df_month_percentage_growth['total_profit'].cumsum()
     
     # Calculate the daily balance by adding deposit to cumulative monthly growth
-    df_month_percentage_growth.loc[:, 'daily_balance'] =  deposit + df_month_percentage_growth['cummulative_monthly_growth']
-    
-    # Calculate the percentage monthly growth based on deposit
-    df_month_percentage_growth.loc[:, 'percentage_monthly_growth_%'] = round((df_month_percentage_growth['cummulative_monthly_growth'] / deposit), 3)
-    
-    # Calculate the cumulative monthly percentage growth based on the percentage monthly growth
-    df_month_percentage_growth.loc[:, 'cummulative_monthly_percentage_growth_%'] = round(df_month_percentage_growth['percentage_monthly_growth_%'].diff() * 100, 3)
+    df_month_percentage_growth.loc[:, 'monthly_balance'] =  deposit + df_month_percentage_growth['cummulative_monthly_growth']
     
     # Sort the DataFrame by year and month in descending order
     df_month_percentage_growth = df_month_percentage_growth.sort_values(by=['year', 'month'], ascending=False)
+
+    # shifting the dataframe by 1 month to calculate weekly growth
+    df_month_percentage_growth['monthly_profit_shift1'] = df_month_percentage_growth['total_profit'].shift(1)
+
+    # after shifting the dataframe by month 1, the first row contains NaN value , so we need to drop it
+    df_month_percentage_growth = df_month_percentage_growth.dropna()
     
+    # calculating weekly growth by taking ratio of weekly profit to last week revenue!
+    df_month_percentage_growth['monthly_growth_%'] = round((df_month_percentage_growth['monthly_profit_shift1'] / df_month_percentage_growth['monthly_balance']),3)*100
+
     # Slice the DataFrame to get the first two rows
     df_month_cum_growth = df_month_percentage_growth.iloc[:2]
 
@@ -623,23 +629,23 @@ def main(data_file_path:str):
             
             with Weekly_growth:
                 df_weekly_cum_growth = weekly_percentage_growth(df)
-                weekly_growth_list = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()
+                weekly_growth_list = df_weekly_cum_growth['weekly_growth_%'].to_list()
                 if len(weekly_growth_list) > 1:
-                    current_growth = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()[0]
-                    previous_week_growth = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()[1]
+                    current_growth = df_weekly_cum_growth['weekly_growth_%'].to_list()[0]
+                    previous_week_growth = df_weekly_cum_growth['weekly_growth_%'].to_list()[1]
                 else:
-                    current_growth = df_weekly_cum_growth['cummulative_weekly_percentage_growth_%'].to_list()[0]
+                    current_growth = df_weekly_cum_growth['weekly_growth_%'].to_list()[0]
                     previous_week_growth = None
                 st.metric(label = 'Weekly Growth', value = f"{current_growth} %", delta = f"{previous_week_growth} %" )
 
             with Monthly_growth:
                 df_month_cum_growth = monthly_percentage_growth(df)
-                monthly_growth_list = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()
+                monthly_growth_list = df_month_cum_growth['monthly_growth_%'].to_list()
                 if len(monthly_growth_list) >1:
-                    current_month_growth = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()[0]
-                    previous_month_growth = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()[1]
+                    current_month_growth = df_month_cum_growth['monthly_growth_%'].to_list()[0]
+                    previous_month_growth = df_month_cum_growth['monthly_growth_%'].to_list()[1]
                 else:
-                    current_month_growth = df_month_cum_growth['cummulative_monthly_percentage_growth_%'].to_list()[0]
+                    current_month_growth = df_month_cum_growth['monthly_growth_%'].to_list()[0]
                     previous_month_growth = None
                 st.metric(label = 'monthly_growth', value = f"{current_month_growth} %", delta = f"{previous_month_growth} %" )
 
