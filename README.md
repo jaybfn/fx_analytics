@@ -10,6 +10,8 @@
 
 Forex Dashboard is a comprehensive tool designed for Forex traders to monitor and analyze their trading performance metrics. By seamlessly integrating with the MT5 terminal on Windows, the tool extracts trading deals, processes the data, and presents it in a user-friendly dashboard using Streamlit. This dashboard provides traders with insights into their daily wins, traded commodities, profit margins, and overall growth percentages.
 
+Also, you can read on Medium : [Introducing Forex Dashboard: A Comprehensive Tool for Forex Traders](https://medium.com/@jayesh.bfn/introducing-forex-dashboard-a-comprehensive-tool-for-forex-traders-d56afb1d84a0)
+
 ## Features
 
 - **ETL Process**: Extracts trading data from the MT5 terminal, transforms it for analysis, and loads it into a CSV file.
