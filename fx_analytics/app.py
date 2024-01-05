@@ -391,13 +391,17 @@ def create_growth_chart(df: pd.DataFrame, weeklygrowth: bool = True) -> Figure:
     result_df.loc[:, 'total_profit'] = result_df['profit'] + result_df['swap'] + result_df['commission'] + result_df['fee']
     # Extract week and month
     result_df.loc[:,'week'] = result_df['date'].dt.isocalendar().week
+    result_df['week'] = result_df['week'].astype('int32')
     result_df.loc[:,'month'] = result_df['date'].dt.month
     result_df.loc[:,'year'] = result_df['date'].dt.year
+    result_df.loc[:,'week-year'] = result_df['week'].astype(str) + '-' + result_df['year'].astype(str)
+    result_df.loc[:,'month-year'] = result_df['month'].astype(str) + '-' + result_df['year'].astype(str)
 
     if weeklygrowth == True:
         # Calculate weekly growth
-        weekly_growth = result_df.groupby(by=['week','month','year'])['total_profit'].sum().reset_index()
+        weekly_growth = result_df.groupby(by=['week-year','month','year'])['total_profit'].sum().reset_index()
         weekly_growth.loc[:,'color'] = weekly_growth['total_profit'].apply(lambda x: 'green' if x >= 0 else 'red')
+        weekly_growth = weekly_growth.sort_values(by=['year','month'], ascending=True)
 
         # Create the bar chart
         fig = go.Figure(data=[go.Bar(
@@ -410,14 +414,15 @@ def create_growth_chart(df: pd.DataFrame, weeklygrowth: bool = True) -> Figure:
             title="Weekly Growth",
             xaxis_title="Week",
             yaxis_title="Profit",
-            width=550,
-            height=400
+            width=475,
+            height=375
         )
 
     else:
         # Calculate monthly growth
-        monthly_growth = result_df.groupby(by=['month','year'])['total_profit'].sum().reset_index()
+        monthly_growth = result_df.groupby(by=['month-year','month','year'])['total_profit'].sum().reset_index()
         monthly_growth.loc[:,'color'] = monthly_growth['total_profit'].apply(lambda x: 'green' if x >= 0 else 'red')
+        monthly_growth = monthly_growth.sort_values(by=['year','month'], ascending=True)
 
         # Create the bar chart
         fig = go.Figure(data=[go.Bar(
@@ -430,8 +435,8 @@ def create_growth_chart(df: pd.DataFrame, weeklygrowth: bool = True) -> Figure:
             title="Monthly Growth",
             xaxis_title="month",
             yaxis_title="Profit",
-            width=550,
-            height=400
+            width=475,
+            height=375
         )
 
     return fig
